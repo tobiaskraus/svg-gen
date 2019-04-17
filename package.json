@@ -7,7 +7,7 @@
     "scripts": {
         "build": "tsc",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "examples-build": "parcel build examples/index.html"
+        "examples-build": "echo \"navigate into examples/ and run 'npm run build'\""
     },
     "repository": {
         "type": "git",
