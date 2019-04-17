@@ -1,3 +1,5 @@
+import { Point } from './model/types';
+
 interface PointsGridOptions {
     minX: number;   // caution: x of points can be smaller than minX when randomDeltaX > 0 and pointsOnLeftEdge = false
     minY: number;   // caution: value can be below (see explanation above)
@@ -21,8 +23,6 @@ const PointsGridOptionsDefault: PointsGridOptions = {
     cols: 5,
     rows: 5,
 }
-
-type Point = [number, number];
 
 export class PointsGrid {
 
