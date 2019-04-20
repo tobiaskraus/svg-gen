@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.html",
     "scripts": {
-        "start": "parcel build ./index.html --public-url .",
-        "build": "parcel build ./index.html --public-url ."
+        "start": "rm ./dist/ -rf && parcel serve ./src/**/* --public-url ../",
+        "build": "rm ./dist/ -rf && parcel build ./src/**/* --public-url ../ && parcel build ./src/index.html --public-url ."
     },
     "author": "Tobias Kraus <contact@tobias-kraus.com> (www.tobias-kraus.com)",
     "license": "ISC",

@@ -1,0 +1,33 @@
+html {
+    background-color: #eee;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px;
+    font-family: sans-serif;
+}
+@media (min-width: 830px) {
+    body {
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.header {
+    padding: 0 15px;
+    background-color: white;
+    border-bottom: 1px solid gray;
+}
+.content {
+    background-color: white;
+    flex: 1;
+}
+#svg {
+    height: 100%;
+    width: 100%;
+}

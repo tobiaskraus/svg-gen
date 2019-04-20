@@ -32,12 +32,12 @@ export class SvgRenderer {
         this.setInlineStyles(options);
     }
 
-    createCircle (p: Point, radius: number) {
+    createCircle (p: Point, radius: number): SVGCircleElement {
         let circle = document.createElementNS(svgNamespaceURI, 'circle');
         circle.setAttribute('r', `${radius}`);
         circle.setAttribute('cy', `${p[1]}`);
         circle.setAttribute('cx', `${p[0]}`);
-        this.svg.appendChild(circle);
+        return this.svg.appendChild(circle);
     }
 
     private getOrCreateSvg (options: SvgRendererOptions): SVGSVGElement {
@@ -78,7 +78,7 @@ export class SvgRenderer {
         
         let inlineStyle: string = '';
         for (let key in styles) {
-            inlineStyle += `${key}: ${styles[key]}`
+            inlineStyle += `${key}: ${styles[key]};`
         }
         if (inlineStyle) {
             this.svg.setAttribute('style', inlineStyle);
