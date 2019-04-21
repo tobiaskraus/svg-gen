@@ -4,12 +4,16 @@
     "description": "",
     "main": "index.html",
     "scripts": {
-        "start": "rm ./dist/ -rf && parcel serve ./src/**/* --public-url ../",
+        "start": "rm ./dist/ -rf && parcel serve ./src/**/*",
         "build": "rm ./dist/ -rf && parcel build ./src/**/* --public-url ../ && parcel build ./src/index.html --public-url ."
     },
     "author": "Tobias Kraus <contact@tobias-kraus.com> (www.tobias-kraus.com)",
     "license": "ISC",
     "devDependencies": {
+        "@types/d3": "^5.7.2",
         "parcel-bundler": "^1.12.3"
+    },
+    "dependencies": {
+        "d3": "^5.9.2"
     }
 }

@@ -1,14 +1,14 @@
 import { Point } from './model/types';
 
 interface PointsGridOptions {
-    minX: number;   // caution: x of points can be smaller than minX when randomDeltaX > 0 and pointsOnLeftEdge = false
+    minX: number;   // caution: x of points can be smaller than minX when randomDistortionX > 0 and pointsOnLeftEdge = false
     minY: number;   // caution: value can be below (see explanation above)
     maxX: number;   // caution: value can be above (see explanation above)
     maxY: number;   // caution: value can be above (see explanation above)
     cols: number;
     rows: number;
-    randomDeltaX?: number;
-    randomDeltaY?: number;
+    randomDistortionX?: number;
+    randomDistortionY?: number;
     pointsOnTopEdge?: boolean;
     pointsOnRightEdge?: boolean;
     pointsOnBottomEdge?: boolean;
@@ -35,6 +35,7 @@ export class PointsGrid {
     ) {
         // merge options with default values
         this.options = {...PointsGridOptionsDefault, ...options};
+        this.generate();
     }
 
     generate () {
@@ -64,9 +65,9 @@ export class PointsGrid {
         const row: Point[] = [];
         for (let x=0; x<this.options.cols; x++) {
 
-            // random translation (randomDeltaX & randomDeltaY)
-            let rX = this.options.randomDeltaX ? Math.random() * this.options.randomDeltaX - this.options.randomDeltaX * 0.5 : 0,
-                rY =  this.options.randomDeltaY ? Math.random() * this.options.randomDeltaY - this.options.randomDeltaY * 0.5 : 0
+            // random translation (randomDistortionX & randomDistortionY)
+            let rX = this.options.randomDistortionX ? Math.random() * this.options.randomDistortionX - this.options.randomDistortionX * 0.5 : 0,
+                rY =  this.options.randomDistortionY ? Math.random() * this.options.randomDistortionY - this.options.randomDistortionY * 0.5 : 0
             row.push([
                 deltaX * x + rX,
                 y + rY

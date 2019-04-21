@@ -6,6 +6,8 @@ html, body {
     padding: 0;
 }
 body {
+    height: 100vh;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     padding: 10px 30px;
@@ -26,8 +28,10 @@ body {
 .content {
     background-color: white;
     flex: 1;
+    padding: 15px;
 }
 #svg {
     height: 100%;
     width: 100%;
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.3);
 }

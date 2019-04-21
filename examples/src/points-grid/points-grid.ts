@@ -2,8 +2,8 @@ import { PointsGrid, SvgRenderer } from '../../../src/index';
 
 function example1() {
     let pointsGrid = new PointsGrid({
-        randomDeltaX: 10,
-        randomDeltaY: 10,
+        randomDistortionX: 10,
+        randomDistortionY: 10,
         maxX: 100,
         maxY: 100,
         pointsOnTopEdge: true,
@@ -11,7 +11,6 @@ function example1() {
         pointsOnBottomEdge: true,
         pointsOnLeftEdge: true,
     });
-    pointsGrid.generate();
 
     let renderer = new SvgRenderer({
         svgElementSelector: '#svg',
