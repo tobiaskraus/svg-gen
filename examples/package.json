@@ -11,9 +11,11 @@
     "license": "ISC",
     "devDependencies": {
         "@types/d3": "^5.7.2",
+        "@types/d3-voronoi": "^1.1.9",
         "parcel-bundler": "^1.12.3"
     },
     "dependencies": {
-        "d3": "^5.9.2"
+        "d3": "^5.9.2",
+        "d3-voronoi": "^1.1.4"
     }
 }

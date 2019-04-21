@@ -7,6 +7,7 @@ interface PointsGridOptions {
     maxY: number;   // caution: value can be above (see explanation above)
     cols: number;
     rows: number;
+    roundedNumbers?: boolean;
     randomDistortionX?: number;
     randomDistortionY?: number;
     pointsOnTopEdge?: boolean;
@@ -63,14 +64,21 @@ export class PointsGrid {
 
     private generatePointsOfRow (y: number, deltaX: number) {
         const row: Point[] = [];
-        for (let x=0; x<this.options.cols; x++) {
+        for (let col=0; col<this.options.cols; col++) {
 
             // random translation (randomDistortionX & randomDistortionY)
             let rX = this.options.randomDistortionX ? Math.random() * this.options.randomDistortionX - this.options.randomDistortionX * 0.5 : 0,
-                rY =  this.options.randomDistortionY ? Math.random() * this.options.randomDistortionY - this.options.randomDistortionY * 0.5 : 0
+                rY =  this.options.randomDistortionY ? Math.random() * this.options.randomDistortionY - this.options.randomDistortionY * 0.5 : 0,
+                posX = deltaX * col + rX,
+                posY = y + rY;
+
+            if (this.options.roundedNumbers) {
+                posX = Math.round(posX);
+                posY = Math.round(posY);
+            }
             row.push([
-                deltaX * x + rX,
-                y + rY
+                posX,
+                posY
             ]);
         }
         return row;

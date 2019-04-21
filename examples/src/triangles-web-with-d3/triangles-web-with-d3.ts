@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import * as voronoi from 'd3-voronoi';
 
 import { PointsGrid } from '../../../src';
 import { Point } from '../../../src/model/types';
@@ -20,10 +21,11 @@ class TrianglesWeb {
             {rows, cols} = this.getWebDimension(this.options.rowsAndCols, width, height);
 
         let pointsGrid = new PointsGrid({
-            maxX: width,
-            maxY: height,
+            maxX: Math.round(width),
+            maxY: Math.round(height),
             rows,
             cols,
+            roundedNumbers: true,
             pointsOnBottomEdge: true,
             pointsOnLeftEdge: true,
             pointsOnRightEdge: true,
@@ -40,14 +42,27 @@ class TrianglesWeb {
             })
         })
 
+        // draw points
         d3.select(this.options.svgSelector)
             .selectAll('circle')
             .data(points)
             .enter()
             .append('circle')
             .attr('r', 2)
-            .attr('cx', d => Math.floor(d[0]))
-            .attr('cy', d => Math.floor(d[1])); 
+            .attr('cx', d => d[0])
+            .attr('cy', d => d[1]);
+
+        let graph = voronoi.voronoi();
+        let triangles = graph.triangles(points);
+        console.log('triangles', triangles);
+
+        // draw triangles
+        d3.select(this.options.svgSelector)
+            .selectAll('polygon')
+            .data(triangles)
+            .enter()
+            .append('polygon')
+            .attr('points', d => `${d[0][0]},${d[0][1]} ${d[1][0]},${d[1][1]} ${d[2][0]},${d[2][1]}`);
     }
 
     private getWebDimension (rowsAndCols: number, svgWidth: number, svgHeight: number) {
