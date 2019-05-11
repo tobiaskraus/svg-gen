@@ -1,4 +1,4 @@
-import { PointsGrid, SvgRenderer } from '../../../src/index';
+import { PointsGrid, SvgRenderer } from '../../src/index';
 
 function example1() {
     let pointsGrid = new PointsGrid({

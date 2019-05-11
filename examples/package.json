@@ -4,18 +4,18 @@
     "description": "",
     "main": "index.html",
     "scripts": {
-        "start": "rm ./dist/ -rf && parcel serve ./src/**/*",
-        "build": "rm ./dist/ -rf && parcel build ./src/**/* --public-url ../ && parcel build ./src/index.html --public-url ."
+        "start": "rm ./dist/ -rf && parcel serve ./src/**/* --public-url ./",
+        "build": "rm ./dist/ -rf && parcel build ./src/index.html --public-url ./ --no-minify"
     },
     "author": "Tobias Kraus <contact@tobias-kraus.com> (www.tobias-kraus.com)",
     "license": "ISC",
     "devDependencies": {
         "@types/d3": "^5.7.2",
-        "@types/d3-voronoi": "^1.1.9",
+        "@types/delaunator": "^2.0.0",
         "parcel-bundler": "^1.12.3"
     },
     "dependencies": {
         "d3": "^5.9.2",
-        "d3-voronoi": "^1.1.4"
+        "delaunator": "^3.0.2"
     }
 }
