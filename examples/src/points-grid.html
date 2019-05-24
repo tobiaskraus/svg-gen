@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <title>svg-gen example: PointsGrid</title>
 
-    <style>
-        #examples {
-            padding: 15px;
-        }
-    </style>
-    
     <link rel="stylesheet" href="./example.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-tomorrow.min.css">
+    <!-- <link rel="stylesheet" href="node_modules/prismjs/themmes/prism.css"> -->
 </head>
+
 <body>
     <div class="header">
         <h1>
@@ -27,12 +26,94 @@
             </a>
         </p>
     </div>
-    
+
     <div class="content">
-        <svg id="svg"></svg>
-        <div id="examples"></div>
+        <div class="example" id="example-basic">
+            <h2>Basic PointsGrid</h2>
+            <svg class="small"></svg>
+            <p>
+                We create a PointsGrid which generates for us an array of points [x, y].
+                Then we set up our SvgRenderer.
+                You can choose if you want to use an existing svg in DOM or to create a new one.
+                In the end we render our PointsGrid.
+            </p>
+            <pre><code class="language-typescript">import { PointsGrid, SvgRenderer } from 'svg-gen';
+
+const pointsGrid = new PointsGrid({});
+
+const renderer = new SvgRenderer({
+    svgElementSelector: '#example-basic>svg'
+});
+
+for (const row of pointsGrid.pointRows) {
+    for (const point of row) {
+        renderer.createCircle(point, 2);
+    }
+}</code></pre>
+        </div>
+        <div class="example" id="example-random-distortion-and-points-on-edge">
+            <h2>Points Grid random distortion and points on edge</h2>
+            <svg class="small"></svg>
+            <button type="button">Rerender</button>
+            <p>
+
+            </p>
+            <pre><code class="language-typescript">const pointsGrid = new PointsGrid({
+    randomDistortionX: 4,
+    randomDistortionY: 2,
+    maxX: 50,
+    maxY: 50,
+    rows: 6,
+    cols: 4,
+});
+
+const renderer = new SvgRenderer({
+    svgElementSelector: '#example-with-options>svg',
+        viewBox: [0, 0, 50, 50],
+});
+
+for (const row of pointsGrid.pointRows) {
+    for (const point of row) {
+        renderer.createCircle(point, 1);
+    }
+}</code></pre>
+        </div>
     </div>
+
+    <div class="example" id="example-with-options">
+        <h2>Points Grid with Options</h2>
+        <svg class="small"></svg>
+        <button type="button">Rerender</button>
+        <p>
+            We can modify many things. Here are some possible options.
+            We also set the viewBox to the size of the points range,
+            so the svg content will be scaled to the size of its svg element.
+        </p>
+        <pre><code class="language-typescript">const pointsGrid = new PointsGrid({
+        randomDistortionX: 4,
+        randomDistortionY: 2,
+        maxX: 50,
+        maxY: 50,
+        rows: 6,
+        cols: 4,
+    });
     
+    const renderer = new SvgRenderer({
+        svgElementSelector: '#example-with-options>svg',
+            viewBox: [0, 0, 50, 50],
+    });
+    
+    for (const row of pointsGrid.pointRows) {
+        for (const point of row) {
+            renderer.createCircle(point, 1);
+        }
+    }</code></pre>
+    </div>
+    </div>
+
     <script src="./points-grid.ts"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-typescript.min.js"></script>
 </body>
+
 </html>

@@ -28,10 +28,36 @@ body {
 .content {
     background-color: white;
     flex: 1;
-    padding: 15px;
+    padding: 15px 24px;
 }
-#svg {
+p {
+    color: #666666;
+    line-height: 1.5;
+}
+pre {
+    padding: 18px 12px;
+    background: #3c3f47;
+    color: white;
+}
+.example {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+svg {
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.3);
+}
+svg.small {
+    height: 250px;
+    width: 250px;
+}
+
+button {
+    display: block;
+    background: white;
+    border: 1px solid gray;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px 0;
 }

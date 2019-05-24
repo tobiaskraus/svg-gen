@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.html",
     "scripts": {
-        "start": "rm ./dist/ -rf && parcel serve ./src/**/* --public-url ./",
+        "start": "rm ./dist/ -rf && parcel serve ./src/**/*",
         "build": "rm ./dist/ -rf && parcel build ./src/index.html --public-url ./ --no-minify"
     },
     "author": "Tobias Kraus <contact@tobias-kraus.com> (www.tobias-kraus.com)",

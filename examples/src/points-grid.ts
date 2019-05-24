@@ -1,90 +1,76 @@
 import { PointsGrid, SvgRenderer } from '../../src/index';
 
-function example1() {
-    let pointsGrid = new PointsGrid({
-        randomDistortionX: 10,
-        randomDistortionY: 10,
-        maxX: 100,
-        maxY: 100,
-        pointsOnTopEdge: true,
-        pointsOnRightEdge: true,
-        pointsOnBottomEdge: true,
-        pointsOnLeftEdge: true,
+function exampleBasic() {
+    const pointsGrid = new PointsGrid({});
+
+    const renderer = new SvgRenderer({
+        svgElementSelector: '#example-basic>svg'
     });
 
-    let renderer = new SvgRenderer({
-        svgElementSelector: '#svg',
-        height: '250px',
-        width: '250px',
-        viewBox: [0, 0, 100, 100],
-    });
-    for (let row of pointsGrid.pointRows) {
-        for (let point of row) {
+    for (const row of pointsGrid.pointRows) {
+        for (const point of row) {
             renderer.createCircle(point, 2);
         }
     }
+}
+exampleBasic();
 
-    createExample({
-        title: 'Create and render PointsGrid',
-        description: `We create a PointsGrid which generates for us an array of points [x, y].
-Then we set up our SvgRenderer. You can choose if you want to use an existing svg in DOM or to create a new one.
-In the end we render our PointsGrid.`,
-        parentElementSelector: '#examples',
-        code: `let pointsGrid = new PointsGrid({
-    randomDeltaX: 10,
-    randomDeltaY: 10,
-    maxX: 100,
-    maxY: 100,
-    pointsOnTopEdge: true,
-    pointsOnRightEdge: true,
-    pointsOnBottomEdge: true,
-    pointsOnLeftEdge: true,
-});
-pointsGrid.generate();
-
-let renderer = new SvgRenderer({
-    parentElementSelector: '#stage',
-    height: '250px',
-    width: '250px',
-    viewBox: [0, 0, 100, 100],
-});
-for (let row of pointsGrid.pointRows) {
-    for (let point of row) {
-        renderer.createCircle(point, 2);
-    }
-}`
+function exampleWithOptions() {
+    const pointsGrid = new PointsGrid({
+        randomDistortionX: 4,
+        randomDistortionY: 2,
+        maxX: 50,
+        maxY: 50,
+        rows: 6,
+        cols: 4,
     });
-}
-example1();
 
+    const renderer = new SvgRenderer({
+        svgElementSelector: '#example-with-options>svg',
+        viewBox: [0, 0, 50, 50],
+    });
 
-/* This is only required to display the examples (in html) */
-interface Example {
-    title: string;
-    description: string;
-    code: string;
-    parentElementSelector: string;
-    btns?: {
-        name: string;
-        callback: () => void;
+    for (const row of pointsGrid.pointRows) {
+        for (const point of row) {
+            renderer.createCircle(point, 1);
+        }
     }
+
+    document.querySelector('#example-with-options>button')
+        .addEventListener('click', e => {
+            renderer.clear();
+            exampleWithOptions();
+        });
 }
-function createExample(example: Example) {
-    let exampleWrapper = document.createElement('div');
-    exampleWrapper.setAttribute('class', 'example');
-    let title = document.createElement('h2');
-    title.innerText = example.title;
-    let description = document.createElement('p');
-    description.innerText = example.description;
-    let code = document.createElement('pre');
-    code.innerText = example.code;
-    let parent = document.querySelector(example.parentElementSelector);
+exampleWithOptions();
 
-    exampleWrapper.append(title);
-    exampleWrapper.append(description);
-    exampleWrapper.append(code);
+function exampleRandomDistortionAndPointsOnEdge() {
+    const pointsGrid = new PointsGrid({
+        randomDistortionX: 3,
+        randomDistortionY: 3,
+        minX: 20,
+        maxX: 100,
+        minY: 20,
+        maxY: 100,
+        rows: 4,
+        cols: 4,
+    });
 
-    // todo: buttons
+    const renderer = new SvgRenderer({
+        svgElementSelector: '#example-random-distortion-and-points-on-edge>svg',
+        viewBox: [0, 0, 100, 100],
+    });
 
-    parent.append(exampleWrapper);
+    for (const row of pointsGrid.pointRows) {
+        for (const point of row) {
+            renderer.createCircle(point, 1);
+        }
+    }
+
+    document.querySelector('#example-random-distortion-and-points-on-edge>button')
+        .addEventListener('click', e => {
+            renderer.clear();
+            exampleRandomDistortionAndPointsOnEdge();
+        });
 }
+exampleRandomDistortionAndPointsOnEdge();
