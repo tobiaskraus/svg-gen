@@ -21,7 +21,7 @@ export class SvgRenderer {
 
     svg: SVGSVGElement;
 
-    constructor (options: SvgRendererOptions) {
+    constructor(options: SvgRendererOptions) {
         this.svg = this.getOrCreateSvg(options);
         if (options.viewBox) {
             this.svg.setAttribute('viewBox', options.viewBox.join(' '));
@@ -32,7 +32,11 @@ export class SvgRenderer {
         this.setInlineStyles(options);
     }
 
-    createCircle (p: Point, radius: number): SVGCircleElement {
+    clear(): void {
+        this.svg.innerHTML = '';
+    }
+
+    createCircle(p: Point, radius: number): SVGCircleElement {
         let circle = document.createElementNS(svgNamespaceURI, 'circle');
         circle.setAttribute('r', `${radius}`);
         circle.setAttribute('cy', `${p[1]}`);
@@ -40,10 +44,10 @@ export class SvgRenderer {
         return this.svg.appendChild(circle);
     }
 
-    private getOrCreateSvg (options: SvgRendererOptions): SVGSVGElement {
+    private getOrCreateSvg(options: SvgRendererOptions): SVGSVGElement {
         let svg;
 
-        function createNewSvg (parentSelector: string): SVGSVGElement {
+        function createNewSvg(parentSelector: string): SVGSVGElement {
             let context = <Element>document.querySelector(parentSelector);
             svg = document.createElementNS(svgNamespaceURI, 'svg');
             context.append(svg);
@@ -59,15 +63,15 @@ export class SvgRenderer {
             else {
                 svg = <SVGSVGElement>svg; // is there a possibility, to check if svg is by accident another Element than SVGElment?
             }
-        } else  {
+        } else {
             const parentSelector = options.parentElementSelector ? options.parentElementSelector : 'body';
             svg = createNewSvg(parentSelector);
         }
         return svg;
     }
 
-    private setInlineStyles (options: SvgRendererOptions) {
-        let styles: {[key: string]: string}  = {}
+    private setInlineStyles(options: SvgRendererOptions) {
+        let styles: { [key: string]: string } = {}
 
         if (options.width) {
             styles.width = options.width;
@@ -75,13 +79,13 @@ export class SvgRenderer {
         if (options.height) {
             styles.height = options.height;
         }
-        
+
         let inlineStyle: string = '';
         for (let key in styles) {
             inlineStyle += `${key}: ${styles[key]};`
         }
         if (inlineStyle) {
             this.svg.setAttribute('style', inlineStyle);
-        } 
+        }
     }
 }
