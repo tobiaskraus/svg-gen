@@ -1,4 +1,4 @@
-import { RenderLayer } from "./renderLayer";
+import { RenderLayer } from "./RenderLayer";
 
 export interface Renderable {
     getRenderData(): RenderLayer;

@@ -1,8 +1,5 @@
-import { Point } from "./model/types";
+import { Point, Renderable, RenderLayer } from "./model";
 import { trianglesGridDoubleOffsets } from "./trianglesGridPatterns/double-offsets";
-import { Renderable } from "./model/renderable";
-import { RenderLayer, RenderElement } from "./model/renderLayer";
-
 
 export interface Triangle {
     /** index of points - not points itself */

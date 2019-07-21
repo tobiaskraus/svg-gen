@@ -1,6 +1,4 @@
-import { Point } from './model/types';
-import { Renderable } from './model/renderable';
-import { Renderer } from './model/renderer';
+import { Point, Renderable, Renderer } from './model';
 
 const svgNamespaceURI = 'http://www.w3.org/2000/svg';
 

@@ -1,4 +1,4 @@
-import { Point } from '../model/types';
+import { Point } from '../model';
 import { Triangle } from '../TrianglesGrid';
 
 /** like RegularGrid, but:
