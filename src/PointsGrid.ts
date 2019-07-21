@@ -20,7 +20,7 @@ interface PointsGridOptions {
     pointsOnLeftEdge?: boolean;
 }
 
-const PointsGridOptionsDefault: PointsGridOptions = {
+const POINTS_GRID_OPTIONS_DEFAULT: PointsGridOptions = {
     minX: 0,
     minY: 0,
     maxX: 100,
@@ -41,7 +41,7 @@ export class PointsGrid {
         options: Partial<PointsGridOptions>
     ) {
         // merge options with default values
-        this.options = { ...PointsGridOptionsDefault, ...options };
+        this.options = { ...POINTS_GRID_OPTIONS_DEFAULT, ...options };
         this.generate();
     }
 

@@ -1,4 +1,6 @@
 import { Point } from './model/types';
+import { Renderable } from './model/renderable';
+import { Renderer } from './model/renderer';
 
 const svgNamespaceURI = 'http://www.w3.org/2000/svg';
 
@@ -17,7 +19,7 @@ interface SvgRendererOptions {
     preserveAspectRatio?: string;   // TODO: define which values are possible: string -> 'none' | ...
 }
 
-export class SvgRenderer {
+export class SvgRenderer implements Renderer {
 
     svg: SVGSVGElement;
 
@@ -42,6 +44,18 @@ export class SvgRenderer {
         circle.setAttribute('cy', `${p[1]}`);
         circle.setAttribute('cx', `${p[0]}`);
         return this.svg.appendChild(circle);
+    }
+
+    render(target: Renderable) {
+        const elements = target.getRenderData();
+
+        for (let el of elements) {
+            let realEl = document.createElementNS(svgNamespaceURI, el[0]);
+            for (let attr in el[1]) {
+                realEl.setAttribute(attr, el[1][attr]);
+            }
+            this.svg.appendChild(realEl);
+        }
     }
 
     private getOrCreateSvg(options: SvgRendererOptions): SVGSVGElement {
