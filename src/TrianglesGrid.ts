@@ -93,6 +93,32 @@ export class TrianglesGrid implements Renderable {
 
     setFillOpacity(param: OpacityPattern | number[][]) {
         console.log('TODO: setFillOpacity()');
+        if (Array.isArray(param)) {
+            if (param.length !== this.options.rows || param[0].length !== this.options.cols * 2) {
+                console.warn(`setFillOpacity(param): param array has should have the size [${this.options.rows}, ${this.options.cols * 2}]`);
+            }
+            let i = 0;
+            for (let row of param) {
+                for (let opacity of row) {
+                    ++i;
+                    if (this.triangles[i]) {
+                        this.triangles[i].fillOpacity = opacity;
+                    } else {
+                        console.warn('setFillOpacity(param): param array has more values than there are triangles');
+                        return;
+                    }
+                }
+            }
+        } else {
+            switch (param) {
+                case OpacityPattern.Full:
+                    this.triangles.map(triangle => triangle.fillOpacity = 1);
+                    break;
+                case OpacityPattern.None:
+                    this.triangles.map(triangle => triangle.fillOpacity = 0);
+                    break;
+            }
+        }
     }
 
     getRenderData(): RenderLayer {

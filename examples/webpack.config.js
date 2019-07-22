@@ -1,15 +1,16 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: 'development',
     entry: {
-        'points-grid': './src/points-grid.ts',
-        'triangles-grid': './src/triangles-grid.ts',
-        'triangles-web-with-d3': './src/triangles-web-with-d3.ts',
+        'pointsGrid': './src/pointsGrid/pointsGrid.ts',
+        'trianglesGrid': './src/trianglesGrid/trianglesGrid.ts',
+        'trianglesWeb-with-d3': './src/trianglesWeb-with-d3/trianglesWeb-with-d3.ts',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js'
+        filename: '[name]/[name].bundle.js'
     },
     module: {
         rules: [
@@ -23,4 +24,10 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },
+    plugins: [
+        new CopyPlugin([
+            { from: '**/*.html', context: 'src/' },
+            { from: '**/*.css', context: 'src/' },
+        ]),
+    ]
 };

@@ -6,10 +6,7 @@
     "scripts": {
         "start": "webpack -w -d --mode development",
         "build": "webpack -d --mode development",
-        "build-prod": "webpack -p --mode production",
-        "move-files-to-dist": "cp src/**.html dist/ && cp src/**.css dist/",
-        "postbuild": "npm run move-files-to-dist",
-        "postbuild-prod": "npm run move-files-to-dist"
+        "build-prod": "webpack -p --mode production"
     },
     "author": "Tobias Kraus <contact@tobias-kraus.com> (www.tobias-kraus.com)",
     "license": "ISC",
@@ -21,6 +18,7 @@
         "webpack-cli": "^3.3.6"
     },
     "dependencies": {
+        "copy-webpack-plugin": "^5.0.3",
         "d3": "^5.9.2",
         "delaunator": "^3.0.2"
     }
