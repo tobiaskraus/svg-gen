@@ -1,4 +1,4 @@
-import { PointsGrid, SvgRenderer } from '../../src/index';
+import { PointsGrid, SvgRenderer } from '../../../src/index';
 
 function exampleBasic() {
     const pointsGrid = new PointsGrid({});
@@ -36,7 +36,7 @@ function exampleWithOptions() {
         }
     }
 
-    document.querySelector('#example-with-options>button')
+    document.querySelector('#example-with-options>button')!
         .addEventListener('click', e => {
             renderer.clear();
             exampleWithOptions();

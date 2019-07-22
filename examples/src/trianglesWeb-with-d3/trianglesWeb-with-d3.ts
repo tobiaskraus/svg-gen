@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
 import Delaunator from 'delaunator';
 
-import { PointsGrid } from '../../src';
-import { Point } from '../../src/model/types';
+import { PointsGrid } from '../../../src';
+import { Point } from '../../../src/model';
 
 interface TrianglesWebOptions {
     svgSelector: string;
