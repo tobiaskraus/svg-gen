@@ -4,11 +4,15 @@ Some code examples, to see how this library works.
 
 ## TypeScript & parcel-bundler
 
+**UPDATE: PARCEL GETS REPLACED BY WEBPACK, AS IT HAD ANNOYING BUGS**
+
 All examples are written in TypeScript.
 In order to use the svg-gen library directly (realive path: ..) instead of npm installing and to avoid much configuration, we use parcel.
 Parcel is bundler like Webpack, but with less configuration.
 
 ## Current issue: Folder structure
+
+**UPDATE: PARCEL GETS REPLACED BY WEBPACK, AS IT HAD ANNOYING BUGS**
 
 I tried to have all examples in subfolders (html + css files).
 And to have one index.html in examples root.

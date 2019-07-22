@@ -4,15 +4,21 @@
     "description": "",
     "main": "index.html",
     "scripts": {
-        "start": "rm ./dist/ -rf && parcel serve ./src/**/*",
-        "build": "rm ./dist/ -rf && parcel build ./src/index.html --public-url ./ --no-minify"
+        "start": "webpack -w -d --mode development",
+        "build": "webpack -d --mode development",
+        "build-prod": "webpack -p --mode production",
+        "move-files-to-dist": "cp src/**.html dist/ && cp src/**.css dist/",
+        "postbuild": "npm run move-files-to-dist",
+        "postbuild-prod": "npm run move-files-to-dist"
     },
     "author": "Tobias Kraus <contact@tobias-kraus.com> (www.tobias-kraus.com)",
     "license": "ISC",
     "devDependencies": {
         "@types/d3": "^5.7.2",
         "@types/delaunator": "^2.0.0",
-        "parcel-bundler": "^1.12.3"
+        "ts-loader": "^6.0.4",
+        "webpack": "^4.36.1",
+        "webpack-cli": "^3.3.6"
     },
     "dependencies": {
         "d3": "^5.9.2",
