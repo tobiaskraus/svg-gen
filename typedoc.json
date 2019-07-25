@@ -1,6 +1,5 @@
 {
     "mode": "file",
     "out": "docs",
-    "entryPoint": "src/index.ts",
     "exclude": "examples/**/*"
 }

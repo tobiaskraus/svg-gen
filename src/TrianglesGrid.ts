@@ -122,7 +122,9 @@ export class TrianglesGrid implements Renderable {
     }
 
     getRenderData(): RenderLayer {
-        return this.triangles.map(triangle =>
+        // Casting only required for typedoc which uses currently TypeScript 3.2.4.
+        // Somehow it doesn't recognize that the type RenderLayer is correct
+        return <RenderLayer>this.triangles.map(triangle =>
             ['polygon', {
                 points: `${this.points[triangle.points[0]]} ${this.points[triangle.points[1]]} ${this.points[triangle.points[2]]}`
             }]

@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "build": "tsc",
+        "build": "rm dist/ -r && tsc",
         "test": "echo \"Error: no test specified\" && exit 1",
         "examples-build": "echo \"navigate into examples/ and run 'npm run build'\"",
         "generate-docs": "typedoc"
