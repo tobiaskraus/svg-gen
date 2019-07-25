@@ -1,8 +1,25 @@
 # svg-gen
 
-**WIP / I just started**
+```warning
+THIS LIBRARY IS NOT EVEN IN ALPHA VERSION YET!
+```
 
-I want to create a small library (later available in npm) to create, manipulate and animate svg via TypeScript or JavaScript.
+A library to create, manipulate and animate svg via TypeScript (recommended) or JavaScript.
+
+* zero dependencies
+* type safe (*written in TypeScript for TypeScript*)
+* let's you generate nice visual patterns
+* is `NOT recomended` to use already - wait until it's stable!
+
+## Install
+
+```sh
+npm install svg-gen
+```
+
+## Documentation
+
+Is generated with `typedoc` and published in /docs. But it's not yet available online (no URL).
 
 ## Motivation
 
