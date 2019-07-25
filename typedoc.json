@@ -1,5 +1,11 @@
 {
     "mode": "file",
     "out": "docs",
-    "exclude": "examples/**/*"
+    "name": "svg-gen Documentation",
+    "theme": "default",
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "media": "docs_assets",
+    "includes": "docs_assets"
 }

@@ -30,13 +30,16 @@ const POINTS_GRID_OPTIONS_DEFAULT: PointsGridOptions = {
 }
 
 
-/** Class to create a grid of points. */
+/** Class to create a grid of points */
 export class PointsGrid {
 
     private options: PointsGridOptions;
 
     pointRows: Point[][] = []; // top to bottom
 
+    /**
+     * @param options object: [[PointsGridOptions]]
+     */
     constructor(
         options: Partial<PointsGridOptions>
     ) {

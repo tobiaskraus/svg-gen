@@ -6,7 +6,6 @@ import { Triangle } from '../TrianglesGrid';
  * - odd columns:   negative y offset
  * - even rows:     positive x offset
  * - odd rows:      negative x offset
- * 
  * - vertices on edges stay on the edges (offset is applied but vertices are brought back on edge afterwards)
  *
  * @param rows amount of points in y direction
@@ -14,7 +13,7 @@ import { Triangle } from '../TrianglesGrid';
  * @param offsetFactor between 0.1 and 0.25 looks good (bigger than 0.5 results in overlapping triangles)
  * @param smallerOutsideRowCol between 0 and 1. As offset brings vertices out of canvas which are brought back,
  * the outer row & col seems a bit too big. That's why this param helps
- * @return {Point, triangles} where triangles consists only of point indices and no styles yet (opacity, ...)
+ * @return {Point, triangles} *triangles consists only of point indices and no styles yet (opacity, ...)*
  */
 export function trianglesGridDoubleOffsets(rows: number, cols: number, offsetFactor: number, smallerOutsideRowCol?: number): {
     points: Point[], triangles: Triangle[]

@@ -49,7 +49,12 @@ const TRIANGLES_GRID_OPTIONS_DEFAULT: TrianglesGridOptions = {
 
 /** Class to create a grid of triangles.
  * - stores a flat array of points(topleft to topright to second row left to second row right ...
- * - stores 
+ * 
+ * ### example
+ * 
+ * [[include:TriangleGrid_example1.md]]
+ * 
+ * ![example preview](media://TriangleGrid_example1.svg)
  * */
 export class TrianglesGrid implements Renderable {
     private options: TrianglesGridOptions;
