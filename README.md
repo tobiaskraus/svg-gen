@@ -61,3 +61,5 @@ svgRenderer.render(trianglesGrid);
 ## Contribution
 
 * [Tobias Kraus](https://github.com/tobiaskraus)
+
+Contributing Doku: [CONTRIBUTING.md](CONTRIBUTING.md)

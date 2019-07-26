@@ -5,10 +5,13 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "build": "rm dist/ -r && tsc",
+        "build": "rm dist/ -rf && tsc",
         "test": "echo \"Error: no test specified\" && exit 1",
         "examples-build": "echo \"navigate into examples/ and run 'npm run build'\"",
-        "generate-docs": "typedoc"
+        "generate-docs": "typedoc",
+        "prepare-dist-for-npm": "cp README.md dist/ && cp package.json dist/",
+        "dist": "npm run build && npm run prepare-dist-for-npm && cd dist && npm publish --ignore-scripts",
+        "prepublishOnly": "echo \"Error: Don't run 'npm publish' in root. Use 'npm run dist' instead.\" && exit 1"
     },
     "repository": {
         "type": "git",
