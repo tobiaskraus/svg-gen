@@ -17,12 +17,14 @@ svgRenderer.render(trianglesGrid);
 /*
     Apply styles
 */
-trianglesGrid.setFillOpacity([
+trianglesGrid.setFillOpacity([].concat(...[
     [0, 0, 0, 0, 1, 1, 0.5, 0.5],
     [0.5, 0.5, 0, 0, 1, 1, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-]);
+    [0, 0, 0, 0, 0, 0, 0, 1],
+]));
+svgRenderer.clear();
+svgRenderer.render(trianglesGrid);
 

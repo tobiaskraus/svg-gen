@@ -34,7 +34,7 @@ interface TrianglesGridOptions {
     strokeWidth?: number;
 
     /** for more advanced options, use TrianglesGrid.setFillOpacity.[DesiredPattern](args); */
-    fillOpacity?: OpacityPattern | number[][];
+    fillOpacity?: OpacityPattern | number[];
     opacity?: OpacityPattern | number[][];
     /** it's also possible to set fill value in css: polygon { fill: blue; } */
     fill?: string | string[][];
@@ -100,22 +100,45 @@ export class TrianglesGrid implements Renderable {
         this.triangles = result.triangles;
     }
 
-    setFillOpacity(param: OpacityPattern | number[][]) {
+    /**
+     * set fillOpacity for each triangle. It  accepts a pattern or a flat array of values.
+     * 
+     * As it's easier to understand which item is which triangle, when using a 2D array,
+     * it might help to use a 2D array and flatten it by `[].concat(...[innerArrays])`
+     * (inner array's length = this.options.columns * 2, outer array's length = this.options.rows).
+     * 
+     * ```ts
+     * // example for a grid with 4 rows and 5 columns (each cell (column-row) consists of 2 triangles (top-right & left-bottom))
+     *  someTriangleGrid.setFillOpacity([].concat(...[
+     *      [.1, .2, .3, .4, .5, .6, .8, .9, 1],
+     *      [.1, .2, .3, .4, .5, .6, .8, .9, 1],
+     *      [.1, .2, .3, .4, .5, .6, .8, .9, 1],
+     *      [.1, .2, .3, .4, .5, .6, .8, .9, 1]
+     *  ]);
+     * 
+     * // another example
+     * 
+     *  someTriangleGrid.setFillOpacity(
+     *      generateTriangleValuesInsideToOutside(
+     *          someTriangleGrid.triangles[],
+     *          someTriangleGrid.points[],
+     *          0.2,
+     *          1
+     *      )
+     *  );
+     * ```
+     *  
+     * @param param 
+     */
+    setFillOpacity(param: OpacityPattern | number[]) {
         console.log('TODO: setFillOpacity()');
         if (Array.isArray(param)) {
-            if (param.length !== this.options.rows || param[0].length !== this.options.cols * 2) {
-                console.warn(`setFillOpacity(param): param array has should have the size [${this.options.rows}, ${this.options.cols * 2}]`);
-            }
-            let i = 0;
-            for (let row of param) {
-                for (let opacity of row) {
-                    ++i;
-                    if (this.triangles[i]) {
-                        this.triangles[i].fillOpacity = opacity;
-                    } else {
-                        console.warn('setFillOpacity(param): param array has more values than there are triangles');
-                        return;
-                    }
+            if (typeof param[0] === 'number') {
+                if (param.length !== this.triangles.length) {
+                    console.warn(`${param.length} values have been passed to setFillOpacity, but there are ${this.triangles.length} triangles`);
+                }
+                for (let i = 0; i < param.length && i < this.triangles.length; i++) {
+                    this.triangles[i].fillOpacity = param[i];
                 }
             }
         } else {
@@ -126,20 +149,34 @@ export class TrianglesGrid implements Renderable {
                 case OpacityPattern.None:
                     this.triangles.map(triangle => triangle.fillOpacity = 0);
                     break;
-                case OpacityPattern.FadeOutInside:
+                // case OpacityPattern.FadeOutInside:
 
             }
         }
     }
 
+    setFillOpacityPattern(pattern: () => number[]) {
+        const opacities = pattern();
+
+        opacities.forEach((opacity, i) => {
+            this.triangles[i].fillOpacity = opacity;
+        })
+    }
+
     getRenderData(): RenderLayer {
         // Casting only required for typedoc which uses currently TypeScript 3.2.4.
         // Somehow it doesn't recognize that the type RenderLayer is correct
-        return <RenderLayer>this.triangles.map(triangle =>
-            ['polygon', {
-                points: `${this.points[triangle.points[0]]} ${this.points[triangle.points[1]]} ${this.points[triangle.points[2]]}`
-            }]
-        );
+        return <RenderLayer>this.triangles.map(triangle => {
+            const element = [
+                'polygon',
+                {
+                    points: `${this.points[triangle.points[0]]} ${this.points[triangle.points[1]]} ${this.points[triangle.points[2]]}`
+                }
+            ];
+            if (triangle.fillOpacity !== undefined) {
+                element[1]['fill-opacity'] = triangle.fillOpacity.toString();
+            }
+            return element;
+        });
     }
-
 }
