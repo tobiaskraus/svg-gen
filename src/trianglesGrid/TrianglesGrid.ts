@@ -1,5 +1,5 @@
-import { Point, Renderable, RenderLayer } from "./model";
-import { trianglesGridDoubleOffsets } from "./trianglesGridPatterns/double-offsets";
+import { Point, Renderable, RenderLayer } from "../model";
+import { trianglesGridDoubleOffsets } from "./gridPatterns/trianglesGridDoubleOffsets";
 
 export interface Triangle {
     /** index of points - not points itself */
@@ -71,8 +71,12 @@ export class TrianglesGrid implements Renderable {
         // merge options with default values
         this.options = { ...TRIANGLES_GRID_OPTIONS_DEFAULT, ...options };
         this.generate();
+        if (this.options.fillOpacity) {
+            this.setFillOpacity(this.options.fillOpacity);
+        }
     }
 
+    /** regenerate points and triangles. Only required after changing TrianglesGrid.options.trianglesPattern. */
     generate() {
         const { rows, cols } = this.options;
         let result: { points: Point[], triangles: Triangle[] } = { points: [], triangles: [] };
@@ -122,6 +126,8 @@ export class TrianglesGrid implements Renderable {
                 case OpacityPattern.None:
                     this.triangles.map(triangle => triangle.fillOpacity = 0);
                     break;
+                case OpacityPattern.FadeOutInside:
+
             }
         }
     }

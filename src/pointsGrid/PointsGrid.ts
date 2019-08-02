@@ -1,4 +1,4 @@
-import { Point } from './model';
+import { Point } from '../model';
 
 interface PointsGridOptions {
     minX: number;   // caution: x of points can be smaller than minX when randomDistortionX > 0 and pointsOnLeftEdge = false

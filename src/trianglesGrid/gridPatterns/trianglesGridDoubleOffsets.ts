@@ -1,4 +1,4 @@
-import { Point } from '../model';
+import { Point } from '../../model';
 import { Triangle } from '../TrianglesGrid';
 
 /** like RegularGrid, but:
@@ -46,7 +46,6 @@ export function trianglesGridDoubleOffsets(rows: number, cols: number, offsetFac
     }
 
     moveEdgeVerticesOnEdge(pointRows);
-
 
     // flatten points array
     const points = ([] as Point[]).concat(...pointRows);
