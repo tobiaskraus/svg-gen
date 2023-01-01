@@ -13,12 +13,12 @@
     "devDependencies": {
         "@types/d3": "^5.7.2",
         "@types/delaunator": "^2.0.0",
-        "ts-loader": "^6.0.4",
-        "webpack": "^4.36.1",
-        "webpack-cli": "^3.3.6"
+        "ts-loader": "^9.4.2",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1"
     },
     "dependencies": {
-        "copy-webpack-plugin": "^5.0.3",
+        "copy-webpack-plugin": "^11.0.0",
         "d3": "^5.9.2",
         "delaunator": "^3.0.2"
     }
